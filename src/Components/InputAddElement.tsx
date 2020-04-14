@@ -1,8 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { rem } from 'polished';
 import styled from 'styled-components';
-
-import { StoreGestionObjectContext } from '../utils/Context/GestionObjectContext';
 
 const FormAddElement = styled.form`
     display: flex;
@@ -43,11 +41,11 @@ const ButtonAdd = styled.button`
     }
 `;
 
-const InputAddElement: React.FC = () => {
-    const {
-        inputData: { setNameObject },
-    } = useContext(StoreGestionObjectContext);
+type PropsInputAddElement = {
+    setNameObject: React.Dispatch<React.SetStateAction<string>>;
+};
 
+const InputAddElement: React.FC<PropsInputAddElement> = ({ setNameObject }) => {
     const handleSubmit = (evt: any): void => {
         evt.preventDefault();
         setNameObject(evt.target.username.value);
